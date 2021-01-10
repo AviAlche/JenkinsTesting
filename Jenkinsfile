@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'python3 printTest.py'
             }
         }
         stage('Test') {
