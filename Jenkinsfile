@@ -1,22 +1,20 @@
+def remote = [:]
+remote.name = 'test'
+remote.host = '10.10.168.2'
+remote.user = 'root'
+remote.password = 'sysdreamworks'
+remote.allowAnyHosts = true
+
 pipeline {
-    agent  { docker { image 'python:3.5.1' } }
+    agent any
 
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                sh 'python printTest.py'
+        stage('Push repo to automation vm') {
+          steps {
+            script {
+                sshPut remote: remote, from: 'README.md', into: '/root/.'
             }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+          }
         }
     }
 }
