@@ -14,7 +14,7 @@ pipeline {
             sh 'ls'
             sh 'pwd'
             script {
-                sshPut remote: remote, from: 'README.md', into: '/root/.'
+                sshPut remote: remote, from: 'src/**/*', into: '/root/.'
             }
           }
         }
