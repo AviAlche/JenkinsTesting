@@ -11,6 +11,8 @@ pipeline {
     stages {
         stage('Push repo to automation vm') {
           steps {
+            sh 'ls'
+            sh 'pwd'
             script {
                 sshPut remote: remote, from: 'README.md', into: '/root/.'
             }
