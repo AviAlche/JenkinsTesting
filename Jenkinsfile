@@ -11,10 +11,10 @@ pipeline {
     stages {
         stage('Push repo to automation vm') {
           steps {
-            sh 'ls'
+            sh 'ls src'
             sh 'pwd'
             script {
-                sshPut remote: remote, from: 'src/**/*', into: '/root/.'
+                sshPut remote: remote, from: 'src/**', into: '/root/.'
             }
           }
         }
